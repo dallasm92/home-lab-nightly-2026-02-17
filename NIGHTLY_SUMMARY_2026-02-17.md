@@ -17,6 +17,12 @@ This repo captures the complete state of work completed in the 2026-02-17 sessio
   - Primary nightly backups to ASUS external SSD
   - Off-host replication to MacMint
   - Automated health checks + ntfy alerts
+- Post-maintenance refresh completed at `2026-02-17T17:59:00-05:00`:
+  - Package update pass executed on `macmint`, `asus-server`, and `pi-core`
+  - `pi-core` upgraded `libpng16-16` and restarted pending `cups-browsed.service`
+  - Cross-host checks passed (`lab-monthly-healthcheck`, Ansible baseline validate, nightly summary)
+  - Canonical handoff docs synchronized from `/home/dallas/lab-notes`
+  - GitHub repo sync sweep performed across all active lab repositories
 
 ## Canonical references
 - `SESSION_LOG.md`

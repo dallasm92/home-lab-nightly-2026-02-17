@@ -1,8 +1,8 @@
 NEXT CHAT START PROMPT (copy/paste this):
-Read /home/dallas/lab-notes/SESSION_LOG.md, /home/dallas/lab-notes/START_NEXT_SESSION.md, and /home/dallas/lab-notes/STATE_SNAPSHOT_2026-02-17.md. Summarize current state, run quick validation checks, then continue.
+Read `/home/dallas/lab-notes/SESSION_LOG.md`, `/home/dallas/lab-notes/START_NEXT_SESSION.md`, and `/home/dallas/lab-notes/STATE_SNAPSHOT_2026-02-17.md`. Summarize current state, run quick validation checks, then continue.
 
 Short prompt:
-Read /home/dallas/lab-notes/START_NEXT_SESSION.md and /home/dallas/lab-notes/STATE_SNAPSHOT_2026-02-17.md, then continue from the latest logged state.
+Read `/home/dallas/lab-notes/START_NEXT_SESSION.md` and `/home/dallas/lab-notes/STATE_SNAPSHOT_2026-02-17.md`, then continue from the latest logged state.
 
 If needed:
-Open /home/dallas/lab-notes/README.md for the index of all handoff files.
+Open `/home/dallas/lab-notes/README.md` for the index of all handoff files.
