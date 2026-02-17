@@ -3,9 +3,9 @@
 ## 2026-02-13
 Summary of completed work:
 - Built/verified secure SSH-based cross-host operations for:
-  - `macmint` (`192.168.1.135`)
-  - `asus-server` (`192.168.1.221`)
-  - `pi-core` (`192.168.1.224`)
+  - `macmint` (`<REDACTED_LAN_IP>`)
+  - `asus-server` (`<REDACTED_LAN_IP>`)
+  - `pi-core` (`<REDACTED_LAN_IP>`)
 - Implemented/validated multi-host update workflow and automation.
 - Fixed Linux Mint `apt` wrapper script behavior (use script-safe package command flow).
 - Created and tuned daily/operational scripts under `/home/dallas/scripts`.
@@ -15,10 +15,10 @@ Summary of completed work:
   - Re-pointed Kuma data mount to original DB path.
   - Recovered prior account/monitor state.
   - Added/normalized lab monitors and fixed malformed HTTP monitor DB field.
-  - Added UFW allow rules for Docker subnet (`172.17.0.0/16`) to monitored local service ports.
+  - Added UFW allow rules for Docker subnet (`<REDACTED_LAN_IP>`) to monitored local service ports.
   - Final Kuma status: all configured monitors reporting UP.
 - Added switch monitor to Kuma:
-  - `Netgear Switch (GS308EP)` -> `192.168.1.117` (ping monitor).
+  - `Netgear Switch (GS308EP)` -> `<REDACTED_LAN_IP>` (ping monitor).
 - Modernized Homepage dashboard:
   - Reorganized sections (`Daily Ops`, `Services`, `Network`).
   - Added current services/devices and switch shortcut.
@@ -61,9 +61,9 @@ What changed:
     - `immich.lan`
     - `portainer.lan`
   - Updated Homepage services URLs:
-    - `Uptime Kuma`: `http://192.168.1.221:3001` -> `http://kuma.lan`
-    - `Immich`: `http://192.168.1.221:2283` -> `http://immich.lan`
-    - `Portainer`: `http://192.168.1.221:9000` -> `http://portainer.lan`
+    - `Uptime Kuma`: `http://<REDACTED_LAN_IP>:3001` -> `http://kuma.lan`
+    - `Immich`: `http://<REDACTED_LAN_IP>:2283` -> `http://immich.lan`
+    - `Portainer`: `http://<REDACTED_LAN_IP>:9000` -> `http://portainer.lan`
   - Updated Uptime Kuma monitor URLs (DB):
     - `Uptime Kuma` -> `http://kuma.lan/`
     - `Immich` -> `http://immich.lan/`
@@ -146,10 +146,10 @@ What changed:
 - Updated Homepage `Network` section links to DNS hostnames in:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml`
   - Changes:
-    - `http://192.168.1.117` -> `http://switch.lan`
-    - `ssh://192.168.1.221` -> `ssh://asus-server.lan`
-    - `ssh://192.168.1.135` -> `ssh://macmint.lan`
-    - `ssh://192.168.1.224` -> `ssh://pi-core.lan`
+    - `http://<REDACTED_LAN_IP>` -> `http://switch.lan`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://asus-server.lan`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://macmint.lan`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://pi-core.lan`
 - Added `macmint.lan` to Pi-hole DNS host records via:
   - `pihole-FTL --config dns.hosts`
 - Restarted Homepage container and validated hostname resolution for:
@@ -164,7 +164,7 @@ Credentials/paths/URLs updated:
 - Backup created:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml.bak_20260216_234638`
 - Updated DNS host mapping includes:
-  - `192.168.1.135 macmint.lan`
+  - `<REDACTED_LAN_IP> macmint.lan`
 
 ## 2026-02-17T00:00:40-05:00
 Date/time:
@@ -177,27 +177,27 @@ What changed:
   - cert scope: `*.lan`
   - NPM certificate id: `1`
 - Upserted/updated active NPM proxy hosts with SSL forced + HTTP/2:
-  - `immich.lan` -> `172.17.0.1:2283`
-  - `portainer.lan` -> `172.17.0.1:9000`
-  - `kuma.lan` -> `172.17.0.1:3001`
-  - `homepage.lan` -> `172.17.0.1:3000`
-  - `npm.lan` -> `172.17.0.1:8181`
-  - `duplicati.lan` -> `172.17.0.1:8200`
-  - `syncthing.lan` -> `172.17.0.1:8384`
-  - `casaos.lan` -> `192.168.1.221:81` (fixed from unreachable Docker bridge target)
-  - `pihole.lan` -> `192.168.1.224:80`
-  - `switch.lan` -> `192.168.1.117:80`
+  - `immich.lan` -> `<REDACTED_LAN_IP>:2283`
+  - `portainer.lan` -> `<REDACTED_LAN_IP>:9000`
+  - `kuma.lan` -> `<REDACTED_LAN_IP>:3001`
+  - `homepage.lan` -> `<REDACTED_LAN_IP>:3000`
+  - `npm.lan` -> `<REDACTED_LAN_IP>:8181`
+  - `duplicati.lan` -> `<REDACTED_LAN_IP>:8200`
+  - `syncthing.lan` -> `<REDACTED_LAN_IP>:8384`
+  - `casaos.lan` -> `<REDACTED_LAN_IP>:81` (fixed from unreachable Docker bridge target)
+  - `pihole.lan` -> `<REDACTED_LAN_IP>:80`
+  - `switch.lan` -> `<REDACTED_LAN_IP>:80`
 - Re-rendered NPM proxy configs and reloaded Nginx successfully (`nginx -t` passed).
 - Updated Homepage service URLs to HTTPS in:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml`
   - Includes service and network links (`switch.lan` now HTTPS).
 - Updated Uptime Kuma HTTP monitors to HTTPS and set `ignore_tls=1` for self-signed cert compatibility:
   - `CasaOS`, `Duplicati`, `Homepage`, `Immich`, `Nginx Proxy Manager`, `Pi-hole Admin`, `Portainer`, `Syncthing`, `Uptime Kuma`
-- Adjusted Pi-hole DNS host mappings so proxied domains resolve to NPM host (`192.168.1.221`) where required:
-  - `pihole.lan` -> `192.168.1.221`
-  - `switch.lan` -> `192.168.1.221`
+- Adjusted Pi-hole DNS host mappings so proxied domains resolve to NPM host (`<REDACTED_LAN_IP>`) where required:
+  - `pihole.lan` -> `<REDACTED_LAN_IP>`
+  - `switch.lan` -> `<REDACTED_LAN_IP>`
 - Added missing UFW rule on ASUS to allow NPM container subnet to CasaOS backend:
-  - `ALLOW IN from 172.17.0.0/16 to any port 81/tcp`
+  - `ALLOW IN from <REDACTED_LAN_IP> to any port 81/tcp`
 
 Validation:
 - HTTPS GET checks succeeded for:
@@ -271,7 +271,7 @@ What changed:
 - Fixed Uptime Kuma “9 down” condition after HTTPS migration:
   - Root cause: ASUS UFW missing Docker-subnet allow rule for HTTPS.
   - Added rule:
-    - `ALLOW IN from 172.17.0.0/16 to any port 443/tcp`
+    - `ALLOW IN from <REDACTED_LAN_IP> to any port 443/tcp`
   - Revalidated monitor connectivity from inside Kuma container.
   - Current monitor state: `active=13`, `up=13`, `down=0`.
 - Firefox trust optimization applied:
@@ -294,7 +294,7 @@ Date/time:
 - 2026-02-17T00:31:59-05:00 (EST)
 
 What changed:
-- Completed security hardening pass across `asus-server` (`192.168.1.221`) and `pi-core` (`192.168.1.224`).
+- Completed security hardening pass across `asus-server` (`<REDACTED_LAN_IP>`) and `pi-core` (`<REDACTED_LAN_IP>`).
 - ASUS SSH hardening finalized:
   - Updated `/etc/ssh/sshd_config` `PasswordAuthentication no` (replacing `yes`).
   - Updated `/etc/ssh/sshd_config.d/50-cloud-init.conf` to `PasswordAuthentication no`.
@@ -318,10 +318,10 @@ What changed:
   - `immich.lan`, `portainer.lan`, `kuma.lan`, `homepage.lan`, `npm.lan`, `duplicati.lan`, `syncthing.lan`, `casaos.lan`, `pihole.lan/admin` all returned HTTP responses through NPM.
 - Diagnosed `switch.lan` remaining failure:
   - NPM upstream logs show `upstream prematurely closed connection`.
-  - Direct checks to `192.168.1.117` return empty reply / timeout, confirming issue is upstream service health, not proxy TLS config.
+  - Direct checks to `<REDACTED_LAN_IP>` return empty reply / timeout, confirming issue is upstream service health, not proxy TLS config.
 
 What is pending:
-- `switch.lan` backend (`192.168.1.117`) needs direct service troubleshooting/restart.
+- `switch.lan` backend (`<REDACTED_LAN_IP>`) needs direct service troubleshooting/restart.
 - Local laptop (`dallas-MacMint`) host firewall hardening still requires interactive `sudo` (not completed from this non-interactive session).
 - Optional UX hardening: install `libnss3-tools` and import `lab-root-ca.crt` into Firefox NSS DB if any profile still shows warnings.
 
@@ -338,7 +338,7 @@ Date/time:
 
 What changed:
 - Final switch.lan access recovery validated:
-  - Upstream switch UI at `http://192.168.1.117/` returns login redirect normally for browser GET requests.
+  - Upstream switch UI at `http://<REDACTED_LAN_IP>/` returns login redirect normally for browser GET requests.
   - Reverse-proxied endpoint `https://switch.lan` returns `HTTP 200` for normal GET and serves switch login page content.
   - Note: switch firmware still gives empty reply for direct HEAD requests; this can make some strict HEAD-only monitors show false DOWN.
 - Homepage updates completed:
@@ -346,18 +346,18 @@ What changed:
   - Kept existing network section switch entry intact.
   - Updated top widgets to include host metrics widgets:
     - Existing ASUS local `resources` widget preserved.
-    - Added `glances` widget for `dallas-MacMint` (`http://192.168.1.135:61208`).
-    - Added `glances` widget for `pi-core` (`http://192.168.1.224:61208`).
+    - Added `glances` widget for `dallas-MacMint` (`http://<REDACTED_LAN_IP>:61208`).
+    - Added `glances` widget for `pi-core` (`http://<REDACTED_LAN_IP>:61208`).
   - Restarted homepage container and validated `https://homepage.lan` is healthy.
 - Pi-core host metrics backend enabled:
   - Installed `glances`.
   - Corrected conflicting systemd override and set final service start command to `/usr/bin/glances -w -B 0.0.0.0 -p 61208`.
   - Enabled + started service successfully.
-  - Opened UFW allow rule for metrics from ASUS host (`192.168.1.221`) to `61208/tcp`.
-  - Verified API from ASUS host: `http://192.168.1.224:61208/api/3/quicklook`.
+  - Opened UFW allow rule for metrics from ASUS host (`<REDACTED_LAN_IP>`) to `61208/tcp`.
+  - Verified API from ASUS host: `http://<REDACTED_LAN_IP>:61208/api/3/quicklook`.
 
 What is pending:
-- `dallas-MacMint` glances endpoint (`192.168.1.135:61208`) is not up yet, so that homepage widget will show timeout until local commands are run.
+- `dallas-MacMint` glances endpoint (`<REDACTED_LAN_IP>:61208`) is not up yet, so that homepage widget will show timeout until local commands are run.
 - Optional monitor hygiene: for `switch.lan` in Uptime Kuma, use GET method instead of HEAD to avoid false negatives.
 
 Credentials/paths/URLs updated:
@@ -385,12 +385,12 @@ What changed:
     - `X11Forwarding no`
     - `AllowUsers dallas`
   - Enabled UFW with default deny incoming and LAN-scoped rules:
-    - SSH (`22/tcp`) from `192.168.1.0/24`
-    - Glances (`61208/tcp`) from ASUS host `192.168.1.221`
+    - SSH (`22/tcp`) from `<REDACTED_LAN_IP>`
+    - Glances (`61208/tcp`) from ASUS host `<REDACTED_LAN_IP>`
   - Enabled fail2ban sshd jail and validated service/jail health.
 - Glances metrics on `dallas-MacMint` fixed and running in web mode:
   - `glances.service` now runs `/usr/bin/glances -w -B 0.0.0.0 -p 61208`.
-  - Verified from ASUS host API access to `http://192.168.1.135:61208/api/3/quicklook`.
+  - Verified from ASUS host API access to `http://<REDACTED_LAN_IP>:61208/api/3/quicklook`.
 - Homepage top metrics verification:
   - `dallas-MacMint` glances widget (`index=1`) returns live CPU/mem/disk data.
   - `pi-core` glances widget (`index=2`) returns live CPU/mem/disk data.
@@ -439,16 +439,16 @@ What changed:
 
 Firewall updates:
 - Added UFW allow rules on `pi-core`:
-  - `1883/tcp` from `192.168.1.0/24`
-  - `2586/tcp` from `192.168.1.0/24`
+  - `1883/tcp` from `<REDACTED_LAN_IP>`
+  - `2586/tcp` from `<REDACTED_LAN_IP>`
 - Existing rules preserved (SSH/DNS/HTTP/Glances)
 
 Validation summary:
 - Local service status all active:
   - `pihole-FTL`, `unbound`, `mosquitto`, `glances`, `fail2ban`
 - Remote checks from ASUS host passed:
-  - DNS via Pi-hole (`@192.168.1.224:53`) resolves external domains
-  - ntfy reachable and accepts publishes on `http://192.168.1.224:2586`
+  - DNS via Pi-hole (`@<REDACTED_LAN_IP>:53`) resolves external domains
+  - ntfy reachable and accepts publishes on `http://<REDACTED_LAN_IP>:2586`
   - MQTT TCP port `1883` reachable
 
 Credentials/paths/URLs updated:
@@ -531,7 +531,7 @@ What changed:
 - Implemented recommendation `1 + 4`:
 
 1) Off-host backup copy automation
-- Since no cloud/offsite remote was preconfigured, implemented immediate off-host replication to `dallas-MacMint` (`192.168.1.135`) as a secondary copy target.
+- Since no cloud/offsite remote was preconfigured, implemented immediate off-host replication to `dallas-MacMint` (`<REDACTED_LAN_IP>`) as a secondary copy target.
 - Created dedicated ASUS root SSH key for sync:
   - `/root/.ssh/id_ed25519_offsite`
 - Authorized key on MacMint user `dallas`.
@@ -632,7 +632,7 @@ What changed:
   - `lab-offsite-sync` had failed at `2026-02-17 03:09:54 EST` (`No route to host`), causing healthcheck `FAIL`.
   - `lab-backup-healthcheck` timer and state file confirmed.
 - Continued from latest state and remediated backup failure:
-  - Fixed ASUS root SSH trust path to MacMint (`/root/.ssh/known_hosts` for `192.168.1.135`).
+  - Fixed ASUS root SSH trust path to MacMint (`/root/.ssh/known_hosts` for `<REDACTED_LAN_IP>`).
   - Re-ran `lab-offsite-sync.service` successfully at `2026-02-17 08:59:17 EST`.
   - Re-ran `lab-backup-healthcheck.service`; state now `OK` (`backup health OK`).
 - Validated HTTPS reachability:
@@ -653,7 +653,7 @@ Credentials/paths/URLs updated:
 - Updated file:
   - `/home/dallas/scripts/for_loop_ping_domains.sh`
 - ASUS trust path updated for offsite sync:
-  - `/root/.ssh/known_hosts` includes `192.168.1.135`
+  - `/root/.ssh/known_hosts` includes `<REDACTED_LAN_IP>`
 - Backup health state file now reports:
   - `/var/lib/lab-monitor/backup-health.state` -> `OK`
 
@@ -666,7 +666,7 @@ What changed:
   1) `switch.lan` HEAD behavior fixed in NPM.
   2) `for_loop_ping_domains.sh` made directly executable.
 - Root cause for `switch.lan` issue confirmed in NPM logs:
-  - upstream device (`192.168.1.117`) closes HEAD requests (`upstream prematurely closed connection`).
+  - upstream device (`<REDACTED_LAN_IP>`) closes HEAD requests (`upstream prematurely closed connection`).
 - Applied switch-specific workaround in NPM host config (`proxy_host/13.conf`):
   - Added exact-root location forcing upstream method to GET:
     - `location = / { proxy_method GET; include conf.d/include/proxy.conf; }`
@@ -859,7 +859,7 @@ What changed:
   - `/home/dallas/lab-notes/STATE_SNAPSHOT_2026-02-17.md`
 - Quick validation checks completed:
   - Local SSH hardening values still match baseline (`PermitRootLogin no`, `PasswordAuthentication no`, `KbdInteractiveAuthentication no`, `MaxAuthTries 3`, `X11Forwarding no`, `AllowUsers dallas`).
-  - Local UFW still active with expected allows (`22/tcp` from `192.168.1.0/24`, `61208/tcp` from `192.168.1.221`).
+  - Local UFW still active with expected allows (`22/tcp` from `<REDACTED_LAN_IP>`, `61208/tcp` from `<REDACTED_LAN_IP>`).
   - Local ClamAV mode still correct:
     - `clamav-daemon` and socket disabled/inactive
     - `clamav-freshclam` enabled/active
@@ -1044,7 +1044,7 @@ What changed:
 - Local (`dallas-MacMint`) checks:
   - No failed systemd units.
   - SSH hardening still matches baseline (`PermitRootLogin no`, `PasswordAuthentication no`, `KbdInteractiveAuthentication no`, `MaxAuthTries 3`, `X11Forwarding no`, `AllowUsers dallas`).
-  - UFW active with expected allows (`22/tcp` from `192.168.1.0/24`, `61208/tcp` from `192.168.1.221`).
+  - UFW active with expected allows (`22/tcp` from `<REDACTED_LAN_IP>`, `61208/tcp` from `<REDACTED_LAN_IP>`).
   - ClamAV mode unchanged and correct:
     - `clamav-daemon` + socket disabled/inactive
     - `clamav-freshclam` enabled/active
@@ -1100,13 +1100,13 @@ What changed:
 - Confirmed on `pi-core`:
   - `pihole-FTL` is active.
   - `pihole status` reports Pi-hole blocking is enabled and DNS listener healthy on port 53 (TCP/UDP, IPv4/IPv6).
-- Confirmed ad-domain blocking behavior from multiple clients by querying Pi-hole directly (`192.168.1.224`):
+- Confirmed ad-domain blocking behavior from multiple clients by querying Pi-hole directly (`<REDACTED_LAN_IP>`):
   - Tested domains: `doubleclick.net`, `googlesyndication.com`, `adservice.google.com`, `ads.yahoo.com`
   - Result on `dallas-MacMint`: all resolved to `0.0.0.0` / `::`
   - Result on `asus-server`: all resolved to `0.0.0.0` / `::`
 - DNS path checks:
-  - `asus-server` resolver is set to `192.168.1.224` globally and on primary interface.
-  - Local host active Wi-Fi link DNS is `192.168.1.224`.
+  - `asus-server` resolver is set to `<REDACTED_LAN_IP>` globally and on primary interface.
+  - Local host active Wi-Fi link DNS is `<REDACTED_LAN_IP>`.
 - Note:
   - Pi-hole API summary endpoint requires web password auth for this environment; direct DNS block tests + service status were used as validation evidence.
 
@@ -1124,15 +1124,15 @@ Date/time:
 What changed:
 - Discovered likely access-point infrastructure on LAN and added monitoring to Uptime Kuma.
 - Network discovery evidence:
-  - `192.168.1.111` identified as TP-Link device (`Server: TP-LINK HTTPD/1.0` on HTTP/HTTPS).
-  - `192.168.1.1` identified as gateway device with active web management (`lighttpd`, HTTP->HTTPS redirect).
+  - `<REDACTED_LAN_IP>` identified as TP-Link device (`Server: TP-LINK HTTPD/1.0` on HTTP/HTTPS).
+  - `<REDACTED_LAN_IP>` identified as gateway device with active web management (`lighttpd`, HTTP->HTTPS redirect).
 - Added new Kuma ping monitors:
-  - `Gateway (192.168.1.1)` -> `192.168.1.1`
-  - `TP-Link AP (192.168.1.111)` -> `192.168.1.111`
+  - `Gateway (<REDACTED_LAN_IP>)` -> `<REDACTED_LAN_IP>`
+  - `TP-Link AP (<REDACTED_LAN_IP>)` -> `<REDACTED_LAN_IP>`
 - Restarted `uptimekuma` container to load monitor changes immediately.
 - Validation after one full monitor interval:
-  - `Gateway (192.168.1.1)` status `UP` (heartbeat timestamp `2026-02-17 21:46:01` UTC)
-  - `TP-Link AP (192.168.1.111)` status `UP` (heartbeat timestamp `2026-02-17 21:46:02` UTC)
+  - `Gateway (<REDACTED_LAN_IP>)` status `UP` (heartbeat timestamp `2026-02-17 21:46:01` UTC)
+  - `TP-Link AP (<REDACTED_LAN_IP>)` status `UP` (heartbeat timestamp `2026-02-17 21:46:02` UTC)
 
 What is pending:
 - Optional: if you have additional AP nodes, provide hostnames/IPs and they can be added as dedicated monitors as well.
@@ -1149,36 +1149,36 @@ Date/time:
 What changed:
 - Ran full LAN device discovery and integrated results into monitoring + dashboard links.
 - Discovery scope:
-  - Subnet scanned: `192.168.1.0/24`
+  - Subnet scanned: `<REDACTED_LAN_IP>`
   - Live hosts found: `15`
-  - Hosts discovered: `192.168.1.1, 192.168.1.17, 192.168.1.30, 192.168.1.111, 192.168.1.117, 192.168.1.133, 192.168.1.135, 192.168.1.137, 192.168.1.155, 192.168.1.163, 192.168.1.171, 192.168.1.172, 192.168.1.209, 192.168.1.221, 192.168.1.224`
+  - Hosts discovered: `<REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>, <REDACTED_LAN_IP>`
 - Uptime Kuma updates:
   - Added missing ping monitors for all discovered hosts not already present (9 new monitors):
-    - `TPV Display (192.168.1.17)`
-    - `Nintendo (192.168.1.30)`
-    - `Apple Device (192.168.1.133)`
-    - `Unknown Device (192.168.1.137)`
-    - `Unknown Device (192.168.1.155)`
-    - `Amazon Device (192.168.1.163)`
-    - `Amazon Device (192.168.1.171)`
-    - `Unknown Device (192.168.1.172)`
-    - `Unknown Device (192.168.1.209)`
+    - `TPV Display (<REDACTED_LAN_IP>)`
+    - `Nintendo (<REDACTED_LAN_IP>)`
+    - `Apple Device (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
+    - `Amazon Device (<REDACTED_LAN_IP>)`
+    - `Amazon Device (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
   - Existing relevant monitors retained:
-    - `Gateway (192.168.1.1)`, `TP-Link AP (192.168.1.111)`, `Netgear Switch (GS308EP)`, `macmint`, `asus-server`, `pi-core`
+    - `Gateway (<REDACTED_LAN_IP>)`, `TP-Link AP (<REDACTED_LAN_IP>)`, `Netgear Switch (GS308EP)`, `macmint`, `asus-server`, `pi-core`
   - Post-change monitor totals:
     - `ping_total=15`
     - `all_total=24`
 - Homepage updates (`services.yaml`):
   - Added `Network Discovery` section with management links where applicable:
-    - `Gateway Router (UI)` -> `https://192.168.1.1`
-    - `TP-Link AP (UI)` -> `http://192.168.1.111`
+    - `Gateway Router (UI)` -> `https://<REDACTED_LAN_IP>`
+    - `TP-Link AP (UI)` -> `http://<REDACTED_LAN_IP>`
   - Restarted `homepage` container and confirmed service is reachable.
 - Validation snapshot (latest ping heartbeats):
   - UP: gateway/AP/switch/core infra and most discovered clients.
   - DOWN at check time (likely sleep/offline behavior):
-    - `Apple Device (192.168.1.133)`
-    - `Amazon Device (192.168.1.163)`
-    - `Nintendo (192.168.1.30)`
+    - `Apple Device (<REDACTED_LAN_IP>)`
+    - `Amazon Device (<REDACTED_LAN_IP>)`
+    - `Nintendo (<REDACTED_LAN_IP>)`
 
 What is pending:
 - Optional cleanup: replace generic monitor names (`Unknown Device ...`) with friendly labels after device owner identification.
@@ -1357,26 +1357,26 @@ What changed:
     - `require_last_push_approval=true`
 - Expanded device discovery beyond live scan using Pi-hole recent-client history and modem probe.
 - New device monitor additions in Kuma (`8` added):
-  - `Modem (192.168.100.1)`
-  - `Unknown Device (192.168.1.60)`
-  - `Unknown Device (192.168.1.82)`
-  - `Gifa Device (192.168.1.142)`
-  - `Unknown Device (192.168.1.153)`
-  - `main-pc` (`192.168.1.167`)
-  - `Netgear Device (192.168.1.227)`
-  - `Netgear Device (192.168.1.228)`
+  - `Modem (<REDACTED_LAN_IP>)`
+  - `Unknown Device (<REDACTED_LAN_IP>)`
+  - `Unknown Device (<REDACTED_LAN_IP>)`
+  - `Gifa Device (<REDACTED_LAN_IP>)`
+  - `Unknown Device (<REDACTED_LAN_IP>)`
+  - `main-pc` (`<REDACTED_LAN_IP>`)
+  - `Netgear Device (<REDACTED_LAN_IP>)`
+  - `Netgear Device (<REDACTED_LAN_IP>)`
 - Post-interval Kuma ping status after expansion:
   - `total=23`, `up=14`, `down=9`, `no_data=0`
   - down at check time:
-    - `Apple Device (192.168.1.133)`
-    - `Gifa Device (192.168.1.142)`
-    - `Amazon Device (192.168.1.163)`
-    - `main-pc` (`192.168.1.167`)
-    - `Netgear Device (192.168.1.227)`
-    - `Netgear Device (192.168.1.228)`
-    - `Nintendo (192.168.1.30)`
-    - `Unknown Device (192.168.1.60)`
-    - `Unknown Device (192.168.1.82)`
+    - `Apple Device (<REDACTED_LAN_IP>)`
+    - `Gifa Device (<REDACTED_LAN_IP>)`
+    - `Amazon Device (<REDACTED_LAN_IP>)`
+    - `main-pc` (`<REDACTED_LAN_IP>`)
+    - `Netgear Device (<REDACTED_LAN_IP>)`
+    - `Netgear Device (<REDACTED_LAN_IP>)`
+    - `Nintendo (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
+    - `Unknown Device (<REDACTED_LAN_IP>)`
 
 What is pending:
 - Optional: reduce alert noise by pausing or increasing intervals for sleep-prone consumer/client devices.
@@ -1400,10 +1400,10 @@ What changed:
   - `active_ping=8` (core infra + key always-on systems)
   - `paused_ping=15` (consumer/sleep-prone/unknown clients retained for inventory but not counted in active health)
 - Active infra monitors now include:
-  - `Gateway (192.168.1.1)`
-  - `TP-Link AP (192.168.1.111)`
+  - `Gateway (<REDACTED_LAN_IP>)`
+  - `TP-Link AP (<REDACTED_LAN_IP>)`
   - `Netgear Switch (GS308EP)`
-  - `Modem (192.168.100.1)`
+  - `Modem (<REDACTED_LAN_IP>)`
   - `asus-server`, `pi-core`, `macmint`, `main-pc`
 - Created corrected timestamped Kuma DB backup after update:
   - `/DATA/AppData/uptimekuma/app/data/kuma.db.bak_20260217_172745`
@@ -1432,13 +1432,13 @@ What changed:
   - `active_ping=7`
   - `paused_ping=16`
 - Active infra monitors now:
-  - `Gateway (192.168.1.1)`
-  - `TP-Link AP (192.168.1.111)`
+  - `Gateway (<REDACTED_LAN_IP>)`
+  - `TP-Link AP (<REDACTED_LAN_IP>)`
   - `Netgear Switch (GS308EP)`
   - `macmint`
   - `asus-server`
   - `pi-core`
-  - `Modem (192.168.100.1)`
+  - `Modem (<REDACTED_LAN_IP>)`
 
 What is pending:
 - Optional: if desired later, selectively re-enable paused client monitors for short discovery windows.

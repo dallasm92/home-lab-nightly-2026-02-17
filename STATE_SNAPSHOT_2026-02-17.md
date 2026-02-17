@@ -3,9 +3,9 @@ Date: 2026-02-17
 Timezone: EST
 
 ## Hosts
-- `dallas-MacMint` - `dallas@192.168.1.135`
-- `asus-server` - `dallas@192.168.1.221`
-- `pi-core` - `dallaspi@192.168.1.224`
+- `dallas-MacMint` - `dallas@<REDACTED_LAN_IP>`
+- `asus-server` - `dallas@<REDACTED_LAN_IP>`
+- `pi-core` - `dallaspi@<REDACTED_LAN_IP>`
 
 ## Security Baseline
 ### dallas-MacMint
@@ -17,8 +17,8 @@ Timezone: EST
   - `X11Forwarding no`
   - `AllowUsers dallas`
 - UFW active:
-  - `22/tcp` from `192.168.1.0/24`
-  - `61208/tcp` from `192.168.1.221`
+  - `22/tcp` from `<REDACTED_LAN_IP>`
+  - `61208/tcp` from `<REDACTED_LAN_IP>`
 - fail2ban active (`sshd` jail)
 - Glances active on `:61208`
 
@@ -43,8 +43,8 @@ Timezone: EST
 - `big-bear-syncthing` (8384/22000/21027)
 - `immich-*` stack (2283)
 - Uptime Kuma monitors include AP infrastructure:
-  - `Gateway (192.168.1.1)` (ping)
-  - `TP-Link AP (192.168.1.111)` (ping)
+  - `Gateway (<REDACTED_LAN_IP>)` (ping)
+  - `TP-Link AP (<REDACTED_LAN_IP>)` (ping)
 
 ### pi-core
 - `Unbound` (`127.0.0.1:5335`) integrated as Pi-hole upstream
@@ -136,8 +136,8 @@ Backup monitoring and alerting (ASUS):
 ## Notes
 - Last package maintenance run: `2026-02-17T17:36:42-05:00` (EST); updates applied on all hosts, with `pi-core` package `libpng16-16` upgraded and restart advisory handled.
 - Last full validation run: `2026-02-17T17:58:55-05:00` (EST); monthly healthcheck + Ansible baseline validate + nightly summary all passed (`HEALTHY`).
-- Last Pi-hole ad-block validation: `2026-02-17T16:37:54-05:00` (EST); ad test domains blocked on local + ASUS clients via `192.168.1.224`.
-- Last AP monitoring update: `2026-02-17T16:46:17-05:00` (EST); added and validated Kuma ping monitors for `192.168.1.1` and `192.168.1.111`.
+- Last Pi-hole ad-block validation: `2026-02-17T16:37:54-05:00` (EST); ad test domains blocked on local + ASUS clients via `<REDACTED_LAN_IP>`.
+- Last AP monitoring update: `2026-02-17T16:46:17-05:00` (EST); added and validated Kuma ping monitors for `<REDACTED_LAN_IP>` and `<REDACTED_LAN_IP>`.
 - Last full LAN inventory + monitor expansion: `2026-02-17T16:52:48-05:00` (EST); all 15 discovered hosts are now in Kuma ping monitoring, with management links added for gateway/AP where applicable.
 - Last repo hardening + portfolio update: `2026-02-17T17:02:56-05:00` (EST); sanitized public docs/IP usage, added security policies, updated/pushed active lab repos, and published `lab-maintenance`.
 - Last repo CI security automation update: `2026-02-17T17:05:32-05:00` (EST); added/pushed `public-security-scan` GitHub Actions workflow to active lab repos.
