@@ -3,9 +3,9 @@ Date: 2026-02-17
 Timezone: EST
 
 ## Hosts
-- `dallas-MacMint` - `dallas@192.168.1.135`
-- `asus-server` - `dallas@192.168.1.221`
-- `pi-core` - `dallaspi@192.168.1.224`
+- `dallas-MacMint` - `dallas@<redacted-ip>`
+- `asus-server` - `dallas@<redacted-ip>`
+- `pi-core` - `dallaspi@<redacted-ip>`
 
 ## Security Baseline
 ### dallas-MacMint
@@ -17,8 +17,8 @@ Timezone: EST
   - `X11Forwarding no`
   - `AllowUsers dallas`
 - UFW active:
-  - `22/tcp` from `192.168.1.0/24`
-  - `61208/tcp` from `192.168.1.221`
+  - `22/tcp` from `<redacted-ip>/24`
+  - `61208/tcp` from `<redacted-ip>`
 - fail2ban active (`sshd` jail)
 - Glances active on `:61208`
 
