@@ -57,17 +57,17 @@ What changed:
   - `/home/dallas/scripts/for_loop_ping_domains.sh` has a bash syntax error near `while true`.
 - Priority #3 started and applied (`*.lan` cleanup where already configured in NPM):
   - Discovered existing NPM proxy hosts:
-    - `kuma.lan`
-    - `immich.lan`
-    - `portainer.lan`
+    - `<REDACTED_LAN_HOST>`
+    - `<REDACTED_LAN_HOST>`
+    - `<REDACTED_LAN_HOST>`
   - Updated Homepage services URLs:
-    - `Uptime Kuma`: `http://<REDACTED_LAN_IP>:3001` -> `http://kuma.lan`
-    - `Immich`: `http://<REDACTED_LAN_IP>:2283` -> `http://immich.lan`
-    - `Portainer`: `http://<REDACTED_LAN_IP>:9000` -> `http://portainer.lan`
+    - `Uptime Kuma`: `http://<REDACTED_LAN_IP>:3001` -> `http://<REDACTED_LAN_HOST>`
+    - `Immich`: `http://<REDACTED_LAN_IP>:2283` -> `http://<REDACTED_LAN_HOST>`
+    - `Portainer`: `http://<REDACTED_LAN_IP>:9000` -> `http://<REDACTED_LAN_HOST>`
   - Updated Uptime Kuma monitor URLs (DB):
-    - `Uptime Kuma` -> `http://kuma.lan/`
-    - `Immich` -> `http://immich.lan/`
-    - `Portainer` -> `http://portainer.lan/`
+    - `Uptime Kuma` -> `http://<REDACTED_LAN_HOST>/`
+    - `Immich` -> `http://<REDACTED_LAN_HOST>/`
+    - `Portainer` -> `http://<REDACTED_LAN_HOST>/`
   - Restarted `uptimekuma` and `homepage` containers and revalidated.
 
 What is pending:
@@ -84,9 +84,9 @@ Credentials/paths/URLs updated:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml`
   - `/DATA/AppData/uptimekuma/app/data/kuma.db`
 - Updated service URLs now in use:
-  - `http://kuma.lan`
-  - `http://immich.lan`
-  - `http://portainer.lan`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
 
 ## 2026-02-16T23:45:27-05:00
 Date/time:
@@ -96,8 +96,8 @@ What changed:
 - Continued Priority #3 and completed DNS + URL cleanup for remaining services.
 - Standardized internal DNS via Pi-hole (`pi-core`):
   - Set `dns.hosts` via `pihole-FTL --config` to include:
-    - `homepage.lan`, `duplicati.lan`, `syncthing.lan`, `npm.lan`, `casaos.lan`, `pihole.lan`
-    - retained existing: `kuma.lan`, `immich.lan`, `portainer.lan`, `switch.lan`, host entries.
+    - `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`
+    - retained existing: `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, host entries.
   - Verified `.lan` resolution on:
     - local (`macmint`)
     - `asus-server`
@@ -110,18 +110,18 @@ What changed:
   - `CasaOS`, `Duplicati`, `Homepage`, `Immich`, `Nginx Proxy Manager`, `Pi-hole Admin`, `Portainer`, `Syncthing`, `Uptime Kuma`
   - Restarted `uptimekuma` and `homepage` after updates.
 - Validated endpoint reachability from local host:
-  - `http://homepage.lan`
-  - `http://kuma.lan`
-  - `http://immich.lan`
-  - `http://portainer.lan`
-  - `http://npm.lan`
-  - `http://duplicati.lan`
-  - `http://syncthing.lan`
-  - `http://casaos.lan`
-  - `http://pihole.lan/admin`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>/admin`
 
 What is pending:
-- Optional cleanup of Homepage `Network` section links from IP to DNS hostnames (`switch.lan`, `asus-server.lan`, `pi-core.lan`, `macmint` hostname if desired).
+- Optional cleanup of Homepage `Network` section links from IP to DNS hostnames (`<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `macmint` hostname if desired).
 - Optional create/standardize dedicated reverse-proxy hostnames for all services currently using direct-port `.lan` URLs.
 - Fix pre-existing script syntax issue:
   - `/home/dallas/scripts/for_loop_ping_domains.sh`
@@ -146,17 +146,17 @@ What changed:
 - Updated Homepage `Network` section links to DNS hostnames in:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml`
   - Changes:
-    - `http://<REDACTED_LAN_IP>` -> `http://switch.lan`
-    - `ssh://<REDACTED_LAN_IP>` -> `ssh://asus-server.lan`
-    - `ssh://<REDACTED_LAN_IP>` -> `ssh://macmint.lan`
-    - `ssh://<REDACTED_LAN_IP>` -> `ssh://pi-core.lan`
-- Added `macmint.lan` to Pi-hole DNS host records via:
+    - `http://<REDACTED_LAN_IP>` -> `http://<REDACTED_LAN_HOST>`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://<REDACTED_LAN_HOST>`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://<REDACTED_LAN_HOST>`
+    - `ssh://<REDACTED_LAN_IP>` -> `ssh://<REDACTED_LAN_HOST>`
+- Added `<REDACTED_LAN_HOST>` to Pi-hole DNS host records via:
   - `pihole-FTL --config dns.hosts`
 - Restarted Homepage container and validated hostname resolution for:
-  - `switch.lan`, `asus-server.lan`, `macmint.lan`, `pi-core.lan`
+  - `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`
 
 What is pending:
-- Optional first-time SSH known_hosts trust for new DNS hostnames (`asus-server.lan`, `pi-core.lan`, `macmint.lan`) on clients where strict host-key checking blocks initial connect.
+- Optional first-time SSH known_hosts trust for new DNS hostnames (`<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`) on clients where strict host-key checking blocks initial connect.
 - Existing pre-session issue still pending:
   - `/home/dallas/scripts/for_loop_ping_domains.sh` syntax error.
 
@@ -164,7 +164,7 @@ Credentials/paths/URLs updated:
 - Backup created:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml.bak_20260216_234638`
 - Updated DNS host mapping includes:
-  - `<REDACTED_LAN_IP> macmint.lan`
+  - `<REDACTED_LAN_IP> <REDACTED_LAN_HOST>`
 
 ## 2026-02-17T00:00:40-05:00
 Date/time:
@@ -177,40 +177,40 @@ What changed:
   - cert scope: `*.lan`
   - NPM certificate id: `1`
 - Upserted/updated active NPM proxy hosts with SSL forced + HTTP/2:
-  - `immich.lan` -> `<REDACTED_LAN_IP>:2283`
-  - `portainer.lan` -> `<REDACTED_LAN_IP>:9000`
-  - `kuma.lan` -> `<REDACTED_LAN_IP>:3001`
-  - `homepage.lan` -> `<REDACTED_LAN_IP>:3000`
-  - `npm.lan` -> `<REDACTED_LAN_IP>:8181`
-  - `duplicati.lan` -> `<REDACTED_LAN_IP>:8200`
-  - `syncthing.lan` -> `<REDACTED_LAN_IP>:8384`
-  - `casaos.lan` -> `<REDACTED_LAN_IP>:81` (fixed from unreachable Docker bridge target)
-  - `pihole.lan` -> `<REDACTED_LAN_IP>:80`
-  - `switch.lan` -> `<REDACTED_LAN_IP>:80`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:2283`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:9000`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:3001`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:3000`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:8181`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:8200`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:8384`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:81` (fixed from unreachable Docker bridge target)
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:80`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>:80`
 - Re-rendered NPM proxy configs and reloaded Nginx successfully (`nginx -t` passed).
 - Updated Homepage service URLs to HTTPS in:
   - `/DATA/AppData/big-bear-homepage/config/services.yaml`
-  - Includes service and network links (`switch.lan` now HTTPS).
+  - Includes service and network links (`<REDACTED_LAN_HOST>` now HTTPS).
 - Updated Uptime Kuma HTTP monitors to HTTPS and set `ignore_tls=1` for self-signed cert compatibility:
   - `CasaOS`, `Duplicati`, `Homepage`, `Immich`, `Nginx Proxy Manager`, `Pi-hole Admin`, `Portainer`, `Syncthing`, `Uptime Kuma`
 - Adjusted Pi-hole DNS host mappings so proxied domains resolve to NPM host (`<REDACTED_LAN_IP>`) where required:
-  - `pihole.lan` -> `<REDACTED_LAN_IP>`
-  - `switch.lan` -> `<REDACTED_LAN_IP>`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>`
+  - `<REDACTED_LAN_HOST>` -> `<REDACTED_LAN_IP>`
 - Added missing UFW rule on ASUS to allow NPM container subnet to CasaOS backend:
   - `ALLOW IN from <REDACTED_LAN_IP> to any port 81/tcp`
 
 Validation:
 - HTTPS GET checks succeeded for:
-  - `https://immich.lan`
-  - `https://portainer.lan`
-  - `https://kuma.lan`
-  - `https://homepage.lan`
-  - `https://npm.lan`
-  - `https://duplicati.lan`
-  - `https://syncthing.lan`
-  - `https://casaos.lan`
-  - `https://pihole.lan/admin`
-  - `https://switch.lan`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>/admin`
+  - `https://<REDACTED_LAN_HOST>`
 - HTTP now redirects to HTTPS (301) for all above hostnames.
 
 What is pending:
@@ -241,7 +241,7 @@ What changed:
   - `/DATA/AppData/nginxproxymanager/data/custom_ssl/npm-1/fullchain.pem` (leaf + root)
   - `/DATA/AppData/nginxproxymanager/data/custom_ssl/npm-1/privkey.pem`
 - Reloaded NPM nginx (`nginx -t` + reload) successfully.
-- Verified live TLS cert issuer on `homepage.lan` and `casaos.lan` is now `DallasLab Root CA`.
+- Verified live TLS cert issuer on `<REDACTED_LAN_HOST>` and `<REDACTED_LAN_HOST>` is now `DallasLab Root CA`.
 - Exported client-import files for trust onboarding:
   - `/DATA/security/pki/lab-root-ca.crt`
   - `/DATA/security/pki/lab-root-ca.pem`
@@ -267,7 +267,7 @@ What changed:
   - Updated `HOMEPAGE_ALLOWED_HOSTS` in:
     - `/var/lib/casaos/apps/big-bear-homepage/docker-compose.yml`
   - Recreated Homepage container from compose.
-  - Confirmed `https://homepage.lan` loads and Homepage API serves custom config.
+  - Confirmed `https://<REDACTED_LAN_HOST>` loads and Homepage API serves custom config.
 - Fixed Uptime Kuma “9 down” condition after HTTPS migration:
   - Root cause: ASUS UFW missing Docker-subnet allow rule for HTTPS.
   - Added rule:
@@ -315,13 +315,13 @@ What changed:
   - ASUS UFW active with default deny incoming; LAN-only service rules and Docker-subnet allowances needed for internal monitor/proxy traffic.
   - Pi UFW active with LAN-only allow rules for DNS (`53/tcp+udp`), HTTP (`80/tcp`), and SSH (`22/tcp`).
 - Service reachability revalidated from ASUS side over HTTPS:
-  - `immich.lan`, `portainer.lan`, `kuma.lan`, `homepage.lan`, `npm.lan`, `duplicati.lan`, `syncthing.lan`, `casaos.lan`, `pihole.lan/admin` all returned HTTP responses through NPM.
-- Diagnosed `switch.lan` remaining failure:
+  - `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>/admin` all returned HTTP responses through NPM.
+- Diagnosed `<REDACTED_LAN_HOST>` remaining failure:
   - NPM upstream logs show `upstream prematurely closed connection`.
   - Direct checks to `<REDACTED_LAN_IP>` return empty reply / timeout, confirming issue is upstream service health, not proxy TLS config.
 
 What is pending:
-- `switch.lan` backend (`<REDACTED_LAN_IP>`) needs direct service troubleshooting/restart.
+- `<REDACTED_LAN_HOST>` backend (`<REDACTED_LAN_IP>`) needs direct service troubleshooting/restart.
 - Local laptop (`dallas-MacMint`) host firewall hardening still requires interactive `sudo` (not completed from this non-interactive session).
 - Optional UX hardening: install `libnss3-tools` and import `lab-root-ca.crt` into Firefox NSS DB if any profile still shows warnings.
 
@@ -337,18 +337,18 @@ Date/time:
 - 2026-02-17T00:39:30-05:00 (EST)
 
 What changed:
-- Final switch.lan access recovery validated:
+- Final <REDACTED_LAN_HOST> access recovery validated:
   - Upstream switch UI at `http://<REDACTED_LAN_IP>/` returns login redirect normally for browser GET requests.
-  - Reverse-proxied endpoint `https://switch.lan` returns `HTTP 200` for normal GET and serves switch login page content.
+  - Reverse-proxied endpoint `https://<REDACTED_LAN_HOST>` returns `HTTP 200` for normal GET and serves switch login page content.
   - Note: switch firmware still gives empty reply for direct HEAD requests; this can make some strict HEAD-only monitors show false DOWN.
 - Homepage updates completed:
-  - Added prominent switch shortcut in `Daily Ops` as `Switch Web UI` -> `https://switch.lan`.
+  - Added prominent switch shortcut in `Daily Ops` as `Switch Web UI` -> `https://<REDACTED_LAN_HOST>`.
   - Kept existing network section switch entry intact.
   - Updated top widgets to include host metrics widgets:
     - Existing ASUS local `resources` widget preserved.
     - Added `glances` widget for `dallas-MacMint` (`http://<REDACTED_LAN_IP>:61208`).
     - Added `glances` widget for `pi-core` (`http://<REDACTED_LAN_IP>:61208`).
-  - Restarted homepage container and validated `https://homepage.lan` is healthy.
+  - Restarted homepage container and validated `https://<REDACTED_LAN_HOST>` is healthy.
 - Pi-core host metrics backend enabled:
   - Installed `glances`.
   - Corrected conflicting systemd override and set final service start command to `/usr/bin/glances -w -B 0.0.0.0 -p 61208`.
@@ -358,7 +358,7 @@ What changed:
 
 What is pending:
 - `dallas-MacMint` glances endpoint (`<REDACTED_LAN_IP>:61208`) is not up yet, so that homepage widget will show timeout until local commands are run.
-- Optional monitor hygiene: for `switch.lan` in Uptime Kuma, use GET method instead of HEAD to avoid false negatives.
+- Optional monitor hygiene: for `<REDACTED_LAN_HOST>` in Uptime Kuma, use GET method instead of HEAD to avoid false negatives.
 
 Credentials/paths/URLs updated:
 - Homepage config:
@@ -394,12 +394,12 @@ What changed:
 - Homepage top metrics verification:
   - `dallas-MacMint` glances widget (`index=1`) returns live CPU/mem/disk data.
   - `pi-core` glances widget (`index=2`) returns live CPU/mem/disk data.
-- `switch.lan` recovery state:
-  - Browser GET access remains healthy (`https://switch.lan` returns switch login page content).
+- `<REDACTED_LAN_HOST>` recovery state:
+  - Browser GET access remains healthy (`https://<REDACTED_LAN_HOST>` returns switch login page content).
   - HEAD checks still return `502` due upstream switch behavior with HEAD; GET should be used in monitors.
 
 What is pending:
-- Optional: update Uptime Kuma `switch.lan` monitor method to `GET` (instead of `HEAD`) to avoid false DOWN state.
+- Optional: update Uptime Kuma `<REDACTED_LAN_HOST>` monitor method to `GET` (instead of `HEAD`) to avoid false DOWN state.
 
 ## 2026-02-17T00:53:00-05:00
 Date/time:
@@ -456,9 +456,9 @@ Credentials/paths/URLs updated:
   - `MOSQ_USER=labmqtt`
   - `MOSQ_PASS=RsIeoA9foz2BJ6p44c+nbJVk`
 - Access URLs:
-  - `http://pi-core.lan:2586` (ntfy)
-  - `mqtt://pi-core.lan:1883` (Mosquitto)
-  - `http://pihole.lan/admin` (Pi-hole)
+  - `http://<REDACTED_LAN_HOST>:2586` (ntfy)
+  - `mqtt://<REDACTED_LAN_HOST>:1883` (Mosquitto)
+  - `http://<REDACTED_LAN_HOST>/admin` (Pi-hole)
 
 ## 2026-02-17T00:57:40-05:00
 Date/time:
@@ -466,8 +466,8 @@ Date/time:
 
 What changed:
 - Added new `pi-core` services to Homepage in `Services` group:
-  - `ntfy` -> `http://pi-core.lan:2586`
-  - `Mosquitto MQTT` -> `mqtt://pi-core.lan:1883`
+  - `ntfy` -> `http://<REDACTED_LAN_HOST>:2586`
+  - `Mosquitto MQTT` -> `mqtt://<REDACTED_LAN_HOST>:1883`
 - Restarted Homepage container and validated service list API reflects both new entries.
 
 Credentials/paths/URLs updated:
@@ -558,7 +558,7 @@ What changed:
 - State tracking to avoid alert spam:
   - `/var/lib/lab-monitor/backup-health.state`
 - Alerts route to ntfy:
-  - `http://pi-core.lan:2586/lab-alerts`
+  - `http://<REDACTED_LAN_HOST>:2586/lab-alerts`
 - Scheduled periodic check:
   - `/etc/systemd/system/lab-backup-healthcheck.service`
   - `/etc/systemd/system/lab-backup-healthcheck.timer`
@@ -636,8 +636,8 @@ What changed:
   - Re-ran `lab-offsite-sync.service` successfully at `2026-02-17 08:59:17 EST`.
   - Re-ran `lab-backup-healthcheck.service`; state now `OK` (`backup health OK`).
 - Validated HTTPS reachability:
-  - `homepage.lan`, `kuma.lan`, `casaos.lan`, `npm.lan`, `portainer.lan`, `duplicati.lan`, `immich.lan`, `syncthing.lan`, `pihole.lan/admin` responded over HTTPS.
-  - `switch.lan` returns `502` on HEAD check (previously noted behavior: GET works while HEAD may fail).
+  - `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>/admin` responded over HTTPS.
+  - `<REDACTED_LAN_HOST>` returns `502` on HEAD check (previously noted behavior: GET works while HEAD may fail).
 - Uptime Kuma monitor DB summary validated on ASUS:
   - Active monitors: `9` HTTP + `4` ping.
   - HTTP monitors are on HTTPS `.lan` URLs.
@@ -645,7 +645,7 @@ What changed:
   - `/home/dallas/scripts/for_loop_ping_domains.sh`
 
 What is pending:
-- Optional: verify/adjust `switch.lan` reverse-proxy handling if clean HEAD responses are required (GET path may already be acceptable for this device).
+- Optional: verify/adjust `<REDACTED_LAN_HOST>` reverse-proxy handling if clean HEAD responses are required (GET path may already be acceptable for this device).
 - Optional: import/trust internal wildcard cert on clients to remove browser warnings.
 - Optional: add execute bit to `/home/dallas/scripts/for_loop_ping_domains.sh` if it should be directly runnable (`chmod +x`).
 
@@ -663,9 +663,9 @@ Date/time:
 
 What changed:
 - Completed requested follow-ups:
-  1) `switch.lan` HEAD behavior fixed in NPM.
+  1) `<REDACTED_LAN_HOST>` HEAD behavior fixed in NPM.
   2) `for_loop_ping_domains.sh` made directly executable.
-- Root cause for `switch.lan` issue confirmed in NPM logs:
+- Root cause for `<REDACTED_LAN_HOST>` issue confirmed in NPM logs:
   - upstream device (`<REDACTED_LAN_IP>`) closes HEAD requests (`upstream prematurely closed connection`).
 - Applied switch-specific workaround in NPM host config (`proxy_host/13.conf`):
   - Added exact-root location forcing upstream method to GET:
@@ -674,13 +674,13 @@ What changed:
 - Added same rule to NPM DB for persistence in future re-renders:
   - `proxy_host.id=13` `advanced_config` updated in `/DATA/AppData/nginxproxymanager/data/database.sqlite`.
 - Validation after change:
-  - `curl -I https://switch.lan` now returns `HTTP/2 200` from both ASUS and local host.
+  - `curl -I https://<REDACTED_LAN_HOST>` now returns `HTTP/2 200` from both ASUS and local host.
 - Updated script details:
   - `/home/dallas/scripts/for_loop_ping_domains.sh` now includes a short usage comment.
   - Execute bit set (`chmod +x`).
 
 What is pending:
-- Optional: if desired, re-save `switch.lan` in NPM UI once to force a clean regenerate from DB and confirm the same behavior remains.
+- Optional: if desired, re-save `<REDACTED_LAN_HOST>` in NPM UI once to force a clean regenerate from DB and confirm the same behavior remains.
 
 Credentials/paths/URLs updated:
 - Backup created:
@@ -705,7 +705,7 @@ What changed:
   - Uptime Kuma heartbeat integrity and recent error scan
 - Findings:
   - All core services reachable:
-    - `https://homepage.lan`, `https://kuma.lan`, `https://casaos.lan`, `https://npm.lan`, `https://portainer.lan`, `https://duplicati.lan`, `https://immich.lan`, `https://syncthing.lan`, `https://pihole.lan/admin`, `https://switch.lan`, `http://pi-core.lan:2586`
+    - `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>`, `https://<REDACTED_LAN_HOST>/admin`, `https://<REDACTED_LAN_HOST>`, `http://<REDACTED_LAN_HOST>:2586`
   - ASUS: no failed units, Docker stack healthy, backup health state `OK`.
   - pi-core: no failed units; `pihole-FTL`, `unbound`, `mosquitto`, and `ntfy` healthy.
   - Uptime Kuma: active monitor heartbeats currently `UP`.
@@ -765,17 +765,17 @@ What changed:
 - backup health state: OK
 - kuma active monitors down: 0
 - Endpoint checks:
-  - https://homepage.lan -> 200
-  - https://kuma.lan -> 302
-  - https://casaos.lan -> 200
-  - https://npm.lan -> 200
-  - https://portainer.lan -> 307
-  - https://duplicati.lan -> 200
-  - https://immich.lan -> 200
-  - https://syncthing.lan -> 200
-  - https://pihole.lan/admin -> 308
-  - https://switch.lan -> 200
-  - http://pi-core.lan:2586 -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 302
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 307
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST>/admin -> 308
+  - https://<REDACTED_LAN_HOST> -> 200
+  - http://<REDACTED_LAN_HOST>:2586 -> 200
 
 What is pending:
 - No action required from this monthly run.
@@ -796,17 +796,17 @@ What changed:
 - backup health state: OK
 - kuma active monitors down: 0
 - Endpoint checks:
-  - https://homepage.lan -> 200
-  - https://kuma.lan -> 302
-  - https://casaos.lan -> 200
-  - https://npm.lan -> 200
-  - https://portainer.lan -> 307
-  - https://duplicati.lan -> 200
-  - https://immich.lan -> 200
-  - https://syncthing.lan -> 200
-  - https://pihole.lan/admin -> 308
-  - https://switch.lan -> 200
-  - http://pi-core.lan:2586 -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 302
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 307
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST>/admin -> 308
+  - https://<REDACTED_LAN_HOST> -> 200
+  - http://<REDACTED_LAN_HOST>:2586 -> 200
 
 What is pending:
 - No action required from this monthly run.
@@ -871,7 +871,7 @@ What changed:
   - ASUS shared failure alert hook confirmed on all critical backup units:
     - `OnFailure=lab-systemd-failure-alert@%n.service`
   - HTTPS reachability checks from local passed for:
-    - `homepage.lan`, `kuma.lan`, `casaos.lan`, `npm.lan`, `portainer.lan`, `duplicati.lan`, `immich.lan`, `syncthing.lan`, `pihole.lan/admin`
+    - `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>`, `<REDACTED_LAN_HOST>/admin`
   - Uptime Kuma DB summary:
     - `13` monitors total, `13` UP, `0` DOWN, `0` paused.
 - Continued follow-up on previously noted script issue:
@@ -884,7 +884,7 @@ What is pending:
 Credentials/paths/URLs updated:
 - No credentials changed.
 - ntfy endpoint used for new alert hooks:
-  - http://pi-core.lan:2586/lab-alerts
+  - http://<REDACTED_LAN_HOST>:2586/lab-alerts
 
 ## 2026-02-17T09:26:55-05:00
 Date/time:
@@ -916,7 +916,7 @@ What is pending:
 Credentials/paths/URLs updated:
 - No credentials changed.
 - ntfy alert destination remains:
-  - `http://pi-core.lan:2586/lab-alerts`
+  - `http://<REDACTED_LAN_HOST>:2586/lab-alerts`
 
 ## 2026-02-17T09:28:05-05:00
 Date/time:
@@ -1070,17 +1070,17 @@ What changed:
   - Core services active: `pihole-FTL`, `unbound`, `mosquitto`, `docker`.
   - UFW active with expected LAN rules.
 - Endpoint reachability from local host succeeded for:
-  - `https://homepage.lan`
-  - `https://kuma.lan`
-  - `https://casaos.lan`
-  - `https://npm.lan`
-  - `https://portainer.lan`
-  - `https://duplicati.lan`
-  - `https://immich.lan`
-  - `https://syncthing.lan`
-  - `https://pihole.lan/admin`
-  - `https://switch.lan`
-  - `http://pi-core.lan:2586`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>`
+  - `https://<REDACTED_LAN_HOST>/admin`
+  - `https://<REDACTED_LAN_HOST>`
+  - `http://<REDACTED_LAN_HOST>:2586`
 - Uptime Kuma DB summary confirms healthy monitor set:
   - `totals total=13 up=13 down=0 pending=0 paused=0 unknown=0`
 
@@ -1461,17 +1461,17 @@ What changed:
 - backup health state: OK
 - kuma active monitors down: 0
 - Endpoint checks:
-  - https://homepage.lan -> 200
-  - https://kuma.lan -> 302
-  - https://casaos.lan -> 200
-  - https://npm.lan -> 200
-  - https://portainer.lan -> 307
-  - https://duplicati.lan -> 200
-  - https://immich.lan -> 200
-  - https://syncthing.lan -> 200
-  - https://pihole.lan/admin -> 308
-  - https://switch.lan -> 200
-  - http://pi-core.lan:2586 -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 302
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 307
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST> -> 200
+  - https://<REDACTED_LAN_HOST>/admin -> 308
+  - https://<REDACTED_LAN_HOST> -> 200
+  - http://<REDACTED_LAN_HOST>:2586 -> 200
 
 What is pending:
 - No action required from this monthly run.

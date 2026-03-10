@@ -74,7 +74,7 @@ Backup monitoring and alerting (ASUS):
   - `/etc/systemd/system/lab-backup-healthcheck.timer`
   - `/etc/systemd/system/lab-backup-healthcheck.service`
 - State file: `/var/lib/lab-monitor/backup-health.state`
-- Alerts: `ntfy` topic `lab-alerts` (`http://pi-core.lan:2586/lab-alerts`)
+- Alerts: `ntfy` topic `lab-alerts` (`http://<REDACTED_LAN_HOST>:2586/lab-alerts`)
 
 ## Monitoring and Ops Automation
 - Local monthly health automation:
@@ -104,7 +104,7 @@ Backup monitoring and alerting (ASUS):
   - Timer: `/etc/systemd/system/clamav-daily-scan.timer`
   - Logs: `/var/log/clamav/daily-scan-*.log`
   - Latest symlink: `/var/log/clamav/daily-scan-latest.log`
-  - ntfy alerts only on infections/errors: `http://pi-core.lan:2586/lab-alerts`
+  - ntfy alerts only on infections/errors: `http://<REDACTED_LAN_HOST>:2586/lab-alerts`
 
 ## Recent Cleanup Actions
 ### dallas-MacMint
@@ -121,17 +121,17 @@ Backup monitoring and alerting (ASUS):
 - unused Docker images pruned (`~793MB reclaimed`).
 
 ## Known URLs
-- Homepage: `https://homepage.lan`
-- Uptime Kuma: `https://kuma.lan`
-- CasaOS: `https://casaos.lan`
-- NPM Admin: `https://npm.lan`
-- Portainer: `https://portainer.lan`
-- Duplicati: `https://duplicati.lan`
-- Immich: `https://immich.lan`
-- Syncthing: `https://syncthing.lan`
-- Pi-hole: `https://pihole.lan/admin`
-- Switch UI: `https://switch.lan`
-- ntfy: `http://pi-core.lan:2586`
+- Homepage: `https://<REDACTED_LAN_HOST>`
+- Uptime Kuma: `https://<REDACTED_LAN_HOST>`
+- CasaOS: `https://<REDACTED_LAN_HOST>`
+- NPM Admin: `https://<REDACTED_LAN_HOST>`
+- Portainer: `https://<REDACTED_LAN_HOST>`
+- Duplicati: `https://<REDACTED_LAN_HOST>`
+- Immich: `https://<REDACTED_LAN_HOST>`
+- Syncthing: `https://<REDACTED_LAN_HOST>`
+- Pi-hole: `https://<REDACTED_LAN_HOST>/admin`
+- Switch UI: `https://<REDACTED_LAN_HOST>`
+- ntfy: `http://<REDACTED_LAN_HOST>:2586`
 
 ## Notes
 - Last package maintenance run: `2026-02-17T17:36:42-05:00` (EST); updates applied on all hosts, with `pi-core` package `libpng16-16` upgraded and restart advisory handled.
